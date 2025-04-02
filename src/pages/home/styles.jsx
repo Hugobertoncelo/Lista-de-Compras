@@ -62,6 +62,36 @@ export const Header = styled.div`
   }
 `;
 
+export const Footer = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  h1 {
+    font-size: 15px;
+    padding: 10px;
+  }
+`;
+
+export const SocialIcons = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+export const SocialLink = styled.a`
+  color: #ffffff;
+  font-size: 24px;
+
+  &:hover {
+    color: #6f00ff;
+  }
+`;
+
 export const DivItems = styled.div`
   display: flex;
   align-items: flex-end;

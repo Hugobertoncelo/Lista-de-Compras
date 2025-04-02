@@ -13,6 +13,9 @@ import {
   DivItem,
   Info,
   DivCategoryItem,
+  Footer,
+  SocialIcons,
+  SocialLink,
 } from "./styles";
 
 import { useState } from "react";
@@ -21,6 +24,10 @@ import { LuPlus, LuMoreVertical } from "react-icons/lu";
 import { MdOutlineClose } from "react-icons/md";
 
 import options from "../../data/options.jsx";
+
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { MdContactMail } from "react-icons/md";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -268,6 +275,46 @@ function Home() {
             </div>
           )}
         </Main>
+        <Footer>
+          <h1>Desenvolvido por: Hugo Bertoncelo</h1>
+          <SocialIcons>
+            <SocialLink
+              href="https://www.linkedin.com/in/hugobertoncelo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin />
+            </SocialLink>
+            <SocialLink
+              href="https://github.com/Hugobertoncelo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </SocialLink>
+            <SocialLink
+              href="https://www.instagram.com/bertoncelo.hugo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </SocialLink>
+            <SocialLink
+              href="https://wa.me/5528999453033"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IoLogoWhatsapp />
+            </SocialLink>
+            <SocialLink
+              href="https://hugobertoncelo.github.io/Portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MdContactMail />
+            </SocialLink>
+          </SocialIcons>
+        </Footer>
       </Swapper>
     </Container>
   );
