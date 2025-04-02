@@ -13,9 +13,23 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  background-image: url(${cover}), url(${bg});
+  background-image: url(${cover});
   background-repeat: no-repeat;
   background-size: contain, cover;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(${bg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+  }
 
   @media (max-width: 770px) {
     background-size: initial;
