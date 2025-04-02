@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Select from "react-select";
 
 import cover from "../../assets/cover.png";
+import bg from "../../assets/bg.jpg";
 
 import { motion } from "framer-motion";
 
@@ -12,9 +13,9 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  background-image: url(${cover});
+  background-image: url(${cover}), url(${bg});
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: contain, cover;
 
   @media (max-width: 770px) {
     background-size: initial;
