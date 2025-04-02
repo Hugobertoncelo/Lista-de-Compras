@@ -73,7 +73,7 @@ export const Footer = styled.footer`
   padding: 10px;
 
   h1 {
-    font-size: 15px;
+    font-size: 11px;
     padding: 10px;
   }
 `;
