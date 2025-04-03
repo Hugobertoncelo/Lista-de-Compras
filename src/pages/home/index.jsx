@@ -56,14 +56,6 @@ function Home() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem("shoppingListItems", JSON.stringify(items));
-  //   localStorage.setItem(
-  //     "checkedShoppingListItems",
-  //     JSON.stringify(checkedItems)
-  //   );
-  // }, [items, checkedItems]);
-
   const removeItem = (index) => {
     setSelectedItemIndex(index);
     setShowDeleteModal(true);
@@ -109,6 +101,30 @@ function Home() {
       }
     }
   };
+
+  function renderCategory(item) {
+    const currentCategory = options.find(
+      (categoria) => categoria.value === item.category
+    );
+
+    return (
+      <div
+        className="categoryItem"
+        style={{
+          background: currentCategory?.color || "defaultColor",
+        }}
+      >
+        <span
+          className="categoryLabel"
+          style={{
+            color: currentCategory?.colorlabel || "defaultColor",
+          }}
+        >
+          {currentCategory.label ?? "Categoria"}
+        </span>
+      </div>
+    );
+  }
 
   return (
     <Container>
@@ -180,7 +196,9 @@ function Home() {
                       color: state.isSelected ? "#fff" : "#afabb6",
                     }),
                   }}
-                  onChange={(selectedOption) => setItemCategory(selectedOption)}
+                  onChange={(selectedOption) =>
+                    setItemCategory(selectedOption.value)
+                  }
                 />
               </Category>
 
@@ -197,76 +215,49 @@ function Home() {
               <span>Nenhum item adicionado.</span>
             </div>
           ) : (
-            <>
-              {items.map((item, index) => (
-                <DivItem
-                  key={index}
-                  done={checkedItems.includes(index) ? "true" : undefined}
-                  initial={{ scale: 0.3, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Info
-                    done={checkedItems.includes(index) ? "true" : undefined}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={checkedItems.includes(index)}
-                      onChange={() => {
-                        if (checkedItems.includes(index)) {
-                          setCheckedItems(
-                            checkedItems.filter(
-                              (itemIndex) => itemIndex !== index
-                            )
-                          );
-                        } else {
-                          setCheckedItems([...checkedItems, index]);
-                        }
-                      }}
-                    />
-                    <div>
-                      <span>{item.name}</span>
-                      <p>{item.quantity}</p>
-                    </div>
-                  </Info>
+            items.map((item, index) => (
+              <DivItem
+                key={index}
+                done={checkedItems.includes(index) ? "true" : undefined}
+                initial={{ scale: 0.3, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Info done={checkedItems.includes(index) ? "true" : undefined}>
+                  <input
+                    type="checkbox"
+                    checked={checkedItems.includes(index)}
+                    onChange={() => {
+                      if (checkedItems.includes(index)) {
+                        setCheckedItems(
+                          checkedItems.filter(
+                            (itemIndex) => itemIndex !== index
+                          )
+                        );
+                      } else {
+                        setCheckedItems([...checkedItems, index]);
+                      }
+                    }}
+                  />
+                  <div>
+                    <span>{item.name}</span>
+                    <p>{item.quantity}</p>
+                  </div>
+                </Info>
 
-                  <DivCategoryItem>
-                    <div
-                      className="categoryItem"
-                      style={{
-                        background: item.category
-                          ? item.category.color || "defaultColor"
-                          : "defaultColor",
-                      }}
-                    >
-                      {item.category ? (
-                        <>
-                          <span
-                            className="categoryLabel"
-                            style={{
-                              color: item.category
-                                ? item.category.colorlabel || "defaultColor"
-                                : "defaultColor",
-                            }}
-                          >
-                            {item.category.label}
-                          </span>{" "}
-                        </>
-                      ) : (
-                        "categoria"
-                      )}
-                    </div>
-                    <button>
-                      <LuMoreVertical
-                        size={20}
-                        color="#A881E6"
-                        onClick={() => removeItem(index)}
-                      />
-                    </button>
-                  </DivCategoryItem>
-                </DivItem>
-              ))}
-            </>
+                <DivCategoryItem>
+                  {renderCategory(item)}
+
+                  <button>
+                    <LuMoreVertical
+                      size={20}
+                      color="#A881E6"
+                      onClick={() => removeItem(index)}
+                    />
+                  </button>
+                </DivCategoryItem>
+              </DivItem>
+            ))
           )}
 
           {showDeleteModal && (

@@ -431,7 +431,7 @@ export const DivItem = styled(motion.div)`
   align-items: center;
   align-self: stretch;
 
-  padding: 16px;
+  padding: 2px;
 
   border-radius: 8px;
   border: 1px solid var(--colorbase-gray-300);
@@ -498,9 +498,6 @@ export const DivCategoryItem = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-
-  padding: 16px;
-  gap: 12px;
 
   button {
     display: flex;
