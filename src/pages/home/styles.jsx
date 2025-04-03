@@ -17,11 +17,17 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: contain, cover;
 
+  & {
+    position: relative;
+  }
+
   &::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     background-image: url(${bg});
@@ -32,7 +38,11 @@ export const Container = styled.div`
   }
 
   @media (max-width: 770px) {
-    background-size: initial;
+    background-size: auto;
+
+    &::before {
+      background-size: cover;
+    }
   }
 `;
 
